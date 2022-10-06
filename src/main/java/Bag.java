@@ -13,8 +13,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
+    String color;
+    int numberOfContents;
+    int capacity;
+    String[] contents;
 
 
     /*
@@ -26,8 +28,10 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
-
-
+    public Bag(String bagColor, int bagCapacity){
+        color = bagColor;
+        capacity = bagCapacity;
+    }
 
 
     /*
@@ -37,6 +41,17 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
+    String getColor(){
+        return this.color;
+    }
+
+    int getNumberOfContents(){
+        return this.numberOfContents;
+    }
+
+    int getCapacity(){
+        return this.capacity;
+    }
 
 
 
@@ -46,7 +61,9 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
+    void setColor(String givenColor){
+        this.color = givenColor;
+    }
 
 
 
@@ -60,8 +77,18 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
+    boolean addItem(String item){
+        if (this.numberOfContents < this.capacity){
+            String[] newContents = new String[this.numberOfContents];
+            System.arraycopy(this.contents, 0, newContents, 0, this.numberOfContents + 1);
+            newContents[this.numberOfContents] = item;
+            this.contents = newContents;
+            this.numberOfContents ++;
+            return true;
+        }
 
-
+        return false;
+    }
 
 
 
@@ -75,6 +102,19 @@ public abstract class Bag {
      *
      * @return
      */
+    String popItem(){
+        if (this.numberOfContents == 0){
+            return null;
+        }
+        String removedString = this.contents[this.numberOfContents - 1];
+
+        String[] newContents = new String[this.numberOfContents - 1];
+        System.arraycopy(this.contents, 0, newContents, 0, this.numberOfContents - 1);
+        this.contents = newContents;
+        this.numberOfContents --;
+
+        return removedString;
+    }
 
 
 
@@ -86,7 +126,7 @@ public abstract class Bag {
      * @param n the amount to increase this Bag's capacity by
      */
     public void increaseCapacity(int n) {
-        // TODO: Implement this method.
+        this.capacity += n;
 
     }
 
