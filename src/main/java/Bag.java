@@ -29,8 +29,10 @@ public abstract class Bag {
      * its contents.)
      */
     public Bag(String bagColor, int bagCapacity){
-        color = bagColor;
-        capacity = bagCapacity;
+        this.color = bagColor;
+        this.capacity = bagCapacity;
+        this.contents = new String[0];
+        this.numberOfContents = 0;
     }
 
 
