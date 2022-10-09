@@ -113,7 +113,9 @@ public abstract class Bag {
         String removedString = this.contents[this.numberOfContents - 1];
 
         String[] newContents = new String[this.numberOfContents - 1];
-        System.arraycopy(this.contents, 0, newContents, 0, this.numberOfContents - 1);
+        for(int k = 0; k < this.numberOfContents - 1; k++){
+            newContents[k] = this.contents[k];
+        }
         this.contents = newContents;
         this.numberOfContents --;
 
